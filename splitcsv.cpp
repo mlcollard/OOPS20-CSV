@@ -8,8 +8,8 @@
     * if not, use strtok_r
 */
 
-#include <cstring>
 #include <iostream>
+#include "CSV.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -18,18 +18,10 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    // copy line because strtok() alters it
-    char* line = strdup(argv[1]);
-
-    // CSV separator
-    const char* separator = ",";
-
-    for (const char* word = strtok(line, separator); word; word = strtok(NULL, separator)) {
+    CSV csv(argv[1]);
+    while (auto word = csv.next()) {
         std::cout << word << "\n";
     }
-
-    // free copied line
-    free(line);
 
     return 0;
 }
