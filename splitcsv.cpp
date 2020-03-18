@@ -18,10 +18,15 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    CSV csv(argv[1]);
-    while (auto word = csv.next()) {
-        std::cout << word << "\n";
-    }
+    // output each csv value on the argv[1] line
+    CSV csv(
+        [](const std::string& word) {
+            std::cout << word << "\n";
+
+            return true;
+        }
+    );
+    csv.run(argv[1]);
 
     return 0;
 }
