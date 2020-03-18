@@ -2,10 +2,6 @@
     splitcsv.cpp
 
     Splits the string into separate csv words, output of one per line
-
-    Note: For demonstration purposes only of using a Wrapper
-    * use strsep() instead 
-    * if not, use strtok_r
 */
 
 #include <iostream>
@@ -13,12 +9,13 @@
 
 int main(int argc, char* argv[]) {
 
+    // CSV data in a line is required
     if (argc != 2) {
         std::cerr << "usage: " << argv[0] << " <CSV Data>\n";
         exit(1);
     }
 
-    // output each csv value on the argv[1] line
+    // output each csv value on the line from argv[1]
     CSV csv(
         [](const std::string& word) {
             std::cout << word << "\n";
